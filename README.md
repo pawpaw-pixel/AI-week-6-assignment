@@ -234,41 +234,5 @@ Cloud: heavier periodic retraining, forecasting, and model management.
 
 Hybrid: edge inference for real-time control; cloud for retraining, analytics, and long-term forecasting.
 
-3) Data flow diagram (sketch)
-
-[Sensors (soil, air, camera, rain, etc.)]
-            │ (raw telemetry, images) 
-            ▼
-      [Edge Nodes / Microcontrollers]
-            │ (local filtering, compression)
-            ▼
-        [Edge Gateway / Pi]
-            │ (preprocessing, local aggregation, quick inference)
-            │ └─> Local Actuators (irrigation valves, fans)  ←─ feedback
-            ▼
-     [Secure Cloud Ingress / Message Broker]
-            │ (MQTT/HTTPS) - time series + images -> storage
-            ▼
-        [Data Lake / Time Series DB]
-            │ (sensor TS, images, metadata)
-            ▼
-    [Feature Engineering Pipeline]
-            │ (rolling stats, GDD, deficits, image features)
-            ▼
-      [Model Training Service / Scheduler]
-            │ (retrain, validate)
-            ▼
-         [Model Registry]
-            │ (versioned artifacts)
-            ▼
-     [Model Serving (Edge + Cloud endpoints)]
-            │ (batch predictions, realtime inference API)
-            ▼
-      [Applications & Dashboards]
- (farmer app, alerts, visualizations, actuarial predictions)
-            ▲
-            │ (user decisions, manual inputs)
-            └───────────┬───────────┘
-                        │
                  [Feedback Loop]
       (harvest yields, sensor drift, ground truth labels)
